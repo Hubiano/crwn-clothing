@@ -5,7 +5,16 @@ const dotenv = require('dotenv')
 
 dotenv.config()
 
-const config = process.env.FIREBASE_CONFIG
+const config = {
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: 'crown-db-671ba.firebaseapp.com',
+  databaseURL: 'https://crown-db-671ba.firebaseio.com',
+  projectId: 'crown-db-671ba',
+  storageBucket: 'crown-db-671ba.appspot.com',
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
+  measurementId: 'G-226XYMQPP9',
+}
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return
