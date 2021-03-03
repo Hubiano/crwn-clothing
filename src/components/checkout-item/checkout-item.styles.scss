@@ -29,6 +29,12 @@
       cursor: pointer;
     }
 
+    &:hover {
+      .arrow {
+        color: darkgray;
+      }
+    }
+
     .value {
       margin: 0 10px;
     }
@@ -37,5 +43,9 @@
   .remove-button {
     padding-left: 12px;
     cursor: pointer;
+
+    &:hover {
+      color: darkgray;
+    }
   }
 }
