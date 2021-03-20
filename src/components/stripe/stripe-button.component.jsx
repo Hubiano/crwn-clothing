@@ -1,0 +1,39 @@
+import React from 'react';
+import StripeCheckout from 'react-stripe-checkout'
+
+const dotenv = require('dotenv')
+dotenv.config()
+
+
+
+const StripeCheckoutButton = ({ price }) => {
+  const priceForStripe = price * 100
+  const publishableKey = process.env.REACT_APP_PUBLISHABLE_KEY
+
+  const onToken = token => {
+    console.log(token)
+    alert('Payment Successful')
+  }
+
+  return (
+    <StripeCheckout
+      name="CROWN CLOTHING" // the pop-in header title
+      description={`Your total is $${price}`} // the pop-in header subtitle
+      image="https://stripe.com/img/documentation/checkout/marketplace.png" // the pop-in header image (default none)
+      label="Buy the Thing Now" // text inside the Stripe button
+      panelLabel="Pay Now" // prepended to the amount in the bottom pay button
+      amount={priceForStripe} // cents
+      currency="USD"
+      stripeKey={publishableKey}
+      email=""
+      // Note: Enabling either address option will give the user the ability to
+      // fill out both. Addresses are sent as a second parameter in the token callback.
+      shippingAddress
+      billingAddress
+      token={onToken}
+    />
+  
+  )
+}
+
+export default StripeCheckoutButton

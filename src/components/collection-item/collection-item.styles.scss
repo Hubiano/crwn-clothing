@@ -5,11 +5,13 @@
   height: 350px;
   align-items: center;
   position: relative;
+  margin-right: 10px;
 
   .image {
     width: 100%;
     height: 95%;
     background-size: cover;
+    border-radius: 5px;
     background-position: center;
     margin-bottom: 5px;
     cursor: pointer;
