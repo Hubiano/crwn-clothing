@@ -20,7 +20,7 @@ const StripeCheckoutButton = ({ price }) => {
       name="CROWN CLOTHING" // the pop-in header title
       description={`Your total is $${price}`} // the pop-in header subtitle
       image="https://stripe.com/img/documentation/checkout/marketplace.png" // the pop-in header image (default none)
-      label="Buy the Thing Now" // text inside the Stripe button
+      label={priceForStripe > 0 ? ' Pay Now ' : ' Nothing to Pay '} // text inside the Stripe button
       panelLabel="Pay Now" // prepended to the amount in the bottom pay button
       amount={priceForStripe} // cents
       currency="USD"
