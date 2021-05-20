@@ -35,10 +35,28 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
         ...additionalData,
       })
     } catch (error) {
-      console.log('error creating user', error.message)
+      alert('error creating user', error.message)
     }
   }
   return userRef
+}
+
+export const convertCollectionsSnapshotToMap = (collectionsSnapshot) => {
+  const transformedCollection = collectionsSnapshot.docs.map((doc) => {
+    const { title, items } = doc.data()
+
+    return {
+      routeName: encodeURI(title.toLowerCase()),
+      id: doc.id,
+      title,
+      items,
+    }
+  })
+
+  return transformedCollection.reduce((accumulator, collection) => {
+    accumulator[collection.title.toLowerCase()] = collection
+    return accumulator
+  }, {})
 }
 
 firebase.initializeApp(config)

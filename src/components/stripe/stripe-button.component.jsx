@@ -1,12 +1,14 @@
 import React from 'react';
 import StripeCheckout from 'react-stripe-checkout'
+import { createStructuredSelector } from 'reselect';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux';
 
 const dotenv = require('dotenv')
 dotenv.config()
 
-
-
-const StripeCheckoutButton = ({ price }) => {
+const StripeCheckoutButton = ({ price, currentUser }) => {
   const priceForStripe = price * 100
   const publishableKey = process.env.REACT_APP_PUBLISHABLE_KEY
 
@@ -14,6 +16,7 @@ const StripeCheckoutButton = ({ price }) => {
     console.log(token)
     alert('Payment Successful')
   }
+
 
   return (
     <StripeCheckout
@@ -36,4 +39,8 @@ const StripeCheckoutButton = ({ price }) => {
   )
 }
 
-export default StripeCheckoutButton
+const mapStateToProps = createStructuredSelector({
+  currentUser:selectCurrentUser,
+})
+
+export default connect(mapStateToProps)(StripeCheckoutButton)
